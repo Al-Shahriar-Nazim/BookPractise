@@ -1,6 +1,13 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
 import { addToStoredDB } from "../../utility/addToDb";
+// sweet alert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+// sweet alert
+import { ToastContainer, toast } from "react-toastify";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -12,6 +19,14 @@ const BookDetails = () => {
 
   const handleMarkAsRead = (id) => {
     // console.log("clicked")
+    // sweetalert2 start
+    // MySwal.fire({
+    //   title: "Good job!",
+    //   text: "You clicked the button!",
+    //   icon: "success",
+    // });
+    // sweetalert2 finish
+    toast("Mark AS Read");
     addToStoredDB(id);
   };
   return (
@@ -25,6 +40,7 @@ const BookDetails = () => {
             <p className="py-6">{review}</p>
             <p className="py-6 font-bold">By :{author}</p>
             <div className="flex gap-x-8">
+              <ToastContainer />
               <button
                 className="btn btn-primary"
                 onClick={() => handleMarkAsRead(id)}
